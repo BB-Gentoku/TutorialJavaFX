@@ -36,6 +36,7 @@ public class DrawGraph extends Application {
         group.getChildren().add(canvas);//今は意味不明
 
         GraphicsContext gc = canvas.getGraphicsContext2D();//グラフィックコンテキスト 分からん newは？
+        //newは要らないと思う。gcのインスタンスに入るクラスが返ってくるみたい。
 
         gc.setFill(Color.RED);//文字の塗りつぶし色？
         gc.setStroke(Color.YELLOW);//文字の外枠色？
