@@ -19,25 +19,21 @@ public class DiceServiceTest {
   public void サイコロの値を確かめる() {
     int number = 100;
     int box[] = new int[number];
-    for(int i = 0; i < 100; i++) {
+    for (int i = 0; i < 100; i++) {
       box[i] = dice.getResult();
     }
 
-    for(int temp:box) {
+    for (int temp : box) {
       //
-      assertThat(TestProcess.closeEquals(temp, 2, 12), is(12));
+      assertThat(closeEquals(temp, 2, 12), is(12));
     }
 
   }
 
-}
-
-class TestProcess {
-  public static int closeEquals(int value, int start, int end) {
+  public int closeEquals(int value, int start, int end) {
     if(start <= value && value <= end) {
       return end;
     }
     return value;
   }
-
 }
