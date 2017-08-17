@@ -1,6 +1,10 @@
-package dice;
+package data;
 
-public class DiceData {
+/**
+ * どのようなサイコロかを格納するクラス
+ * <p>
+ */
+public class Dice {
   //サイコロの目の最大値
   private final int range;
   //サイコロの数
@@ -10,7 +14,7 @@ public class DiceData {
    * @param range サイコロの目の最大値
    * @param number サイコロの数
    * */
-  public DiceData(int range, int number) {
+  public Dice(int range, int number) {
     this.range = range;
     this.number = number;
   }
