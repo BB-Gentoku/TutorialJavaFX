@@ -1,5 +1,6 @@
 package director;
 
+import data.Utility;
 import logic.DiceLogic;
 
 /**
@@ -11,7 +12,7 @@ public class MonoporyDirector {
   private DiceLogic dice;
 
   public MonoporyDirector() {
-    dice = new DiceLogic(6,2);
+    dice = new DiceLogic(Utility.DICE_RANGE, Utility.DICE_NUMBER);
   }
   //サイコロの値を確認するだけ
   public void printDiceResult() {

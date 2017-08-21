@@ -11,9 +11,13 @@ public class PlayerMount implements Player {
   //表示する名前
   String name;
   //プレイヤーがいる座標
-  int piece;
+  int place;
   //プレイヤーの持つ現金
   int cash;
+  //刑務所に入ってるかどうか
+  //trueで刑務所暮らし
+  //falseでシャバ暮らし
+  boolean inJail;
 
   /**
    * コンストラクタ
@@ -25,23 +29,7 @@ public class PlayerMount implements Player {
   PlayerMount(int code, String name, int piece, int cash) {
     this.code = code;
     this.name = name;
-    this.piece = piece;
-    this.cash = cash;
-  }
-
-  public void setCode(int code) {
-    this.code = code;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public void setPiece(int piece) {
-    this.piece = piece;
-  }
-
-  public void setCash(int cash) {
+    this.place = piece;
     this.cash = cash;
   }
 
@@ -53,8 +41,8 @@ public class PlayerMount implements Player {
     return this.name;
   }
 
-  public int getPiece() {
-    return this.piece;
+  public int getPlace() {
+    return this.place;
   }
 
   public int getCash() {
@@ -65,5 +53,41 @@ public class PlayerMount implements Player {
   public boolean addCash(int cash) {
     this.cash += cash;
     return this.cash >= 0 ? true : false;
+  }
+
+  @Override
+  public int doMove(int distance) {
+    place += distance;
+    if (place < Utility.MAP_SIZE) {
+      return place;
+    }
+    place -= Utility.MAP_SIZE;
+    this.addCash(Utility.PAYING);
+    return place;
+  }
+
+  @Override
+  public int doJump(int address) {
+    if (place < address) {
+      return place = address;
+    } else {
+      this.addCash(Utility.PAYING);
+      return place = address;
+    }
+  }
+
+  public void goJail() {
+    place = Utility.ADDRESS_JAIL;
+    inJail = true;
+  }
+
+  @Override
+  public void releaseJail() {
+    this.addCash(-Utility.RELEAS_PRICE);
+    inJail = false;
+  }
+
+  public void escapeJail() {
+    inJail = false;
   }
 }
