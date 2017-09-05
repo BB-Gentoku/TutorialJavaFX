@@ -14,7 +14,7 @@ public class DiceLogicTest {
 
   public static class サイコロを振ったときの範囲を確認する {
     @Before
-    public void setup() {
+    public void setup() throws Exception{
       dice = new DiceLogic(6, 2);
     }
 
@@ -35,7 +35,7 @@ public class DiceLogicTest {
 
   public static class ゾロ目かどうかを確かめる {
     @Before
-    public void setup() {
+    public void setup() throws Exception{
       dice = new DiceLogic(1, 3);
     }
 
@@ -53,5 +53,22 @@ class DiceUtil {
       return end;
     }
     return value;
+  }
+
+  public static class コンストラクタに想定外の値を入れてみる {
+
+    @Test(expected = IllegalArgumentException.class)
+    public static void
+    rangeに1未満の値を入れるとIlligalArgumentExceptionが投げられる()
+    throws Exception{
+      DiceLogic dice = new DiceLogic(0, 1);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public static void
+    numberに1未満の値を入れるとIllegalArgumentExceotionが投げられる()
+    throws Exception {
+      DiceLogic dice = new DiceLogic(1, 0);
+    }
   }
 }
