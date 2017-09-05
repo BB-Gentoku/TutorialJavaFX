@@ -31,6 +31,13 @@ public interface Player {
   public int getCash();
 
   /**
+   * プレイヤーが刑務所に入っているかどうか.
+   * @return trueなら刑務所にいる.
+   * falseならシャバにいる.
+   */
+  public boolean isInJail();
+
+  /**
    * プレイヤーの現金の変動処理.
    * @param cash 変動する金額.負の数も可.
    * @return 破産したかどうかの判定.
@@ -64,7 +71,7 @@ public interface Player {
   /**
    * 刑務所から釈放される処理.
    * <p>
-   * これは50現金を払った場合の処理
+   * これは現金を払った場合の処理
    */
   public void releaseJail();
 

@@ -17,8 +17,17 @@ public class DiceLogic {
   /**
    * @param range サイコロが出す目の最大値.
    * @param number サイコロの数.
+   * 上限は決めていない.
+   *
    */
-  public DiceLogic(int range, int number) {
+  public DiceLogic(int range, int number) throws Exception {
+    if (range < 1) {
+      throw new IllegalArgumentException();
+    }
+    if (number < 1) {
+      throw new IllegalArgumentException();
+    }
+
     dice = new Dice(range, number);
     results = new ArrayList<Integer>(number);
   }
@@ -51,7 +60,7 @@ public class DiceLogic {
     shakeResult();
 
     int sumResult = 0;
-    for(int get : results) {
+    for (int get : results) {
       sumResult += get;
     }
     return sumResult;
@@ -64,8 +73,8 @@ public class DiceLogic {
    */
   public boolean isUniform() {
     int result = results.get(0);
-    for(int get : results) {
-      if(result != get) {
+    for (int get : results) {
+      if (result != get) {
         return false;
       }
     }
